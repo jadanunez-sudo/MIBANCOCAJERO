@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cajero Automático - Mibanco</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cajero">
+
+ 
+  <section id="loginPantalla" class="pantallaLogin">
+
+    <div class="encabezadoLogin">
+      <img src="img/logo.png" class="logoBanco" alt="Mibanco">
+      <h1>Bienvenido</h1>
+      <p>Por favor, ingrese sus datos para continuar</p>
+    </div>
+
+    <div class="zonaLogin">
+
+      <div class="panelDatos">
+
+        <label for="dni">👤 Ingrese su DNI</label>
+        <input
+          type="text"
+          id="dni"
+          maxlength="8"
+          placeholder="Número de DNI (8 dígitos)"
+          readonly
+          onclick="seleccionarCampo('dni')"
+        >
+
+        <label for="password">🔒 Ingrese su contraseña</label>
+
+        <div class="passwordContenedor">
+          <input
+            type="password"
+            id="password"
+            maxlength="4"
+            placeholder="Contraseña"
+            readonly
+            onclick="seleccionarCampo('password')"
+          >
+
+          <button
+            type="button"
+            id="btnOjo"
+            class="btnOjo"
+            onclick="mostrarPassword()"
+          >👁</button>
+        </div>
+
+        <p id="mensajeLogin"></p>
+      </div>
+
+      <!-- TECLADO NUMÉRICO -->
+      <div class="teclado">
+        <button onclick="agregarNumero(1)">1</button>
+        <button onclick="agregarNumero(2)">2</button>
+        <button onclick="agregarNumero(3)">3</button>
+
+        <button onclick="agregarNumero(4)">4</button>
+        <button onclick="agregarNumero(5)">5</button>
+        <button onclick="agregarNumero(6)">6</button>
+
+        <button onclick="agregarNumero(7)">7</button>
+        <button onclick="agregarNumero(8)">8</button>
+        <button onclick="agregarNumero(9)">9</button>
+
+        <button class="borrar" onclick="borrarNumero()">⌫</button>
+        <button onclick="agregarNumero(0)">0</button>
+        <button class="continuar" onclick="iniciarSesion()">
+          Continuar ➜
+        </button>
+      </div>
+
+    </div>
+
+    <div class="pieLogin">
+      <button onclick="limpiarLogin()">✕ LIMPIAR</button>
+      <span>🔒 Cajero de demostración</span>
+    </div>
+
+  </section>
+
+ 
+  <section id="menu" class="oculto">
+
+    <header class="headerBanco">
+      <img src="img/logo.png" class="logoPequeno" alt="Mibanco">
+
+      <div class="datosUsuario">
+        <strong id="usuarioActual"></strong>
+        <button onclick="cerrarSesion()">Salir</button>
+      </div>
+    </header>
+
+    <main>
+      <h2>¿Qué operación desea realizar?</h2>
+
+      <div class="menuOpciones">
+
+       
+        <button onclick="consultarSaldo()">
+          <img
+            class="iconoMenu"
+            src="img/consultarmonto.png"
+            alt="Consultar saldo"
+          >
+          <span>Consultar saldo</span>
+        </button>
+
+      
+        <button onclick="mostrarDeposito()">
+          <img
+            class="iconoMenu"
+            src="img/ingresarmonto.png"
+            alt="Ingresar monto"
+          >
+          <span>Ingresar monto</span>
+        </button>
+
+       
+        <button onclick="mostrarRetiro()">
+          <img
+            class="iconoMenu"
+            src="img/retirarmonto.png"
+            alt="Retirar monto"
+          >
+          <span>Retirar monto</span>
+        </button>
+
+    
+        <button onclick="mostrarServicios()">
+          <img
+            class="iconoMenu"
+            src="img/pagosservicios.png"
+            alt="Pagar servicios"
+          >
+          <span>Pagar servicios</span>
+        </button>
+
+       
+        <button onclick="mostrarTransferencia()">
+          <img
+            class="iconoMenu"
+            src="img/transferencias.png"
+            alt="Transferencia"
+          >
+          <span>Transferencia</span>
+        </button>
+
+     
+        <button onclick="mostrarMovimientos()">
+          <img
+            class="iconoMenu"
+            src="img/movimientos.png"
+            alt="Movimientos"
+          >
+          <span>Movimientos</span>
+        </button>
+
+      </div>
+    </main>
+  </section>
+
+ 
+  <section id="operacion" class="oculto">
+
+    <header class="headerBanco">
+      <img src="img/logo.png" class="logoPequeno" alt="Mibanco">
+    </header>
+
+    <main>
+      <button class="volver" onclick="volverMenu()">
+        ← Volver al menú
+      </button>
+
+      <h2 id="tituloOperacion"></h2>
+      <div id="contenidoOperacion"></div>
+    </main>
+
+  </section>
+
+</div>
+
+
+<div id="modalProcesando" class="modal oculto">
+  <div class="modalProcesandoContenido">
+    <p>Procesando movimiento...</p>
+    <div class="spinnerProcesando"></div>
+  </div>
+</div>
+
+
+<div id="modalResultadoMovimiento" class="modal oculto">
+  <div class="resultadoMovimiento">
+    <h2 id="tituloResultadoMovimiento"></h2>
+    <div class="circuloExitoMovimiento">✓</div>
+    <p id="detalleResultadoMovimiento"></p>
+  </div>
+</div>
+
+
+<div id="modalSaldoFinal" class="modal oculto">
+  <div class="modalSaldoContenido">
+    <h2>Saldo disponible:</h2>
+    <p id="cuentaSaldoFinal" class="subtextoSaldo"></p>
+    <div id="montoSaldoFinal" class="saldoFinalGrande"></div>
+  </div>
+</div>
+
+
+<div id="modalExito" class="modal oculto">
+  <div class="modalContenido">
+    <div class="check">✓</div>
+    <h2>¡Operación exitosa!</h2>
+    <p id="mensajeExito"></p>
+    <button onclick="cerrarModal()">Aceptar</button>
+  </div>
+</div>
+
+
+<div id="modalError" class="modal oculto">
+  <div class="modalContenido">
+    <div class="iconoError">!</div>
+    <h2>Operación no realizada</h2>
+    <p id="mensajeError"></p>
+    <button onclick="cerrarError()">Aceptar</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

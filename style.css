@@ -1,0 +1,709 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #006b2d, #00a63f, #00762f);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+button {
+  font-family: inherit;
+}
+
+.cajero {
+  width: 100%;
+  max-width: 1100px;
+  min-height: 680px;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 70px rgba(0,0,0,.38);
+}
+
+
+.pantallaLogin {
+  min-height: 680px;
+  padding: 30px 50px;
+  color: white;
+  background: radial-gradient(
+    circle at top center,
+    #00b847,
+    #00943b 55%,
+    #006d2b
+  );
+}
+
+.encabezadoLogin {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.logoBanco {
+  width: 220px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.encabezadoLogin h1 {
+  font-size: 44px;
+  margin-bottom: 5px;
+}
+
+.encabezadoLogin p {
+  font-size: 18px;
+}
+
+.zonaLogin {
+  display: grid;
+  grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
+  gap: 25px;
+  align-items: stretch;
+  margin-top: 25px;
+}
+
+.panelDatos {
+  background: white;
+  border-radius: 22px;
+  padding: 32px;
+  color: #00582b;
+  box-shadow: 0 8px 20px rgba(0,0,0,.18);
+}
+
+.panelDatos label {
+  display: block;
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.panelDatos input {
+  width: 100%;
+  height: 55px;
+  padding: 0 15px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 18px;
+  outline: none;
+  margin-bottom: 24px;
+  background: white;
+  color: #333;
+}
+
+.panelDatos input.campoActivo {
+  border: 3px solid #ffd900;
+  box-shadow: 0 0 8px rgba(255,217,0,.6);
+}
+
+.passwordContenedor {
+  position: relative;
+}
+
+.passwordContenedor input {
+  padding-right: 55px;
+}
+
+.btnOjo {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  font-size: 21px;
+  cursor: pointer;
+}
+
+#mensajeLogin {
+  color: #d00000;
+  font-weight: bold;
+  text-align: center;
+  min-height: 22px;
+}
+
+
+.teclado {
+  background: #e5f8ea;
+  padding: 22px;
+  border-radius: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+}
+
+.teclado button {
+  min-height: 72px;
+  background: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #00582b;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,.13);
+  transition: .15s;
+}
+
+.teclado button:hover {
+  transform: translateY(-3px);
+}
+
+.teclado button:active {
+  transform: scale(.94);
+}
+
+.teclado .borrar {
+  background: #006b32;
+  color: white;
+}
+
+.teclado .continuar {
+  background: #ffd900;
+  color: #004d25;
+  font-size: 15px;
+}
+
+.pieLogin {
+  margin-top: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.pieLogin button {
+  padding: 12px 24px;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.pieLogin span {
+  font-weight: bold;
+}
+
+
+.headerBanco {
+  background: #008c39;
+  padding: 16px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 8px solid #ffd900;
+  gap: 15px;
+}
+
+.logoPequeno {
+  width: 170px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.datosUsuario {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: white;
+}
+
+.headerBanco button {
+  border: none;
+  padding: 9px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+main {
+  padding: 40px;
+  min-height: 540px;
+  background: #f3f7f4;
+}
+
+main h2 {
+  color: #006e32;
+  margin-bottom: 25px;
+}
+
+
+.menuOpciones {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.menuOpciones button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  background: white;
+  border: 2px solid transparent;
+  border-radius: 18px;
+  min-height: 155px;
+  padding: 15px;
+
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+
+.menuOpciones button:hover {
+  border-color: #ffd900;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.18);
+}
+
+
+.iconoMenu {
+  display: block;
+  width: 92px;
+  height: 92px;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 22px;
+  flex-shrink: 0;
+  transition: transform .25s ease;
+}
+
+.menuOpciones button:hover .iconoMenu {
+  transform: scale(1.07);
+}
+
+.menuOpciones span {
+  display: block;
+  font-size: 17px;
+  font-weight: bold;
+  color: #006e32;
+  text-align: center;
+}
+
+
+.volver {
+  background: transparent;
+  border: none;
+  color: #006e32;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+
+.cajaOperacion {
+  max-width: 520px;
+  background: white;
+  padding: 30px;
+  margin: auto;
+  border-radius: 20px;
+  box-shadow: 0 7px 20px rgba(0,0,0,.15);
+}
+
+.cajaOperacion input,
+.cajaOperacion select {
+  width: 100%;
+  padding: 15px;
+  margin: 12px 0;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 17px;
+  outline: none;
+}
+
+.cajaOperacion input:focus,
+.cajaOperacion select:focus {
+  border-color: #008c39;
+}
+
+.btn-principal {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 9px;
+  background: #008c39;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-principal:hover {
+  background: #006e2c;
+}
+
+.saldoGrande {
+  font-size: 42px;
+  color: #008c39;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.textoOperacion {
+  text-align: center;
+  color: #006e32;
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+
+.saldoDisponible {
+  text-align: center;
+  padding: 12px;
+  background: #e9f8ed;
+  border-radius: 10px;
+  color: #00582b;
+  margin-bottom: 20px;
+}
+
+.montosRapidos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.montosRapidos button {
+  padding: 13px;
+  border: none;
+  border-radius: 7px;
+  background: #27933c;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 7px rgba(0,0,0,.15);
+}
+
+.montosRapidos button:hover {
+  background: #147b2e;
+}
+
+.controlMonto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.controlMonto button {
+  width: 55px;
+  height: 55px;
+  border: none;
+  border-radius: 50%;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  flex-shrink: 0;
+}
+
+.btnMenos {
+  background: #d84545;
+}
+
+.btnMas {
+  background: #16873a;
+}
+
+.campoMonto {
+  display: flex;
+  align-items: center;
+  border: 2px solid #008c39;
+  border-radius: 10px;
+  background: white;
+  overflow: hidden;
+  width: 210px;
+}
+
+.campoMonto span {
+  background: #008c39;
+  color: white;
+  padding: 16px 12px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.campoMonto input {
+  width: 100%;
+  min-width: 0;
+  border: none;
+  margin: 0;
+  padding: 15px 5px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #00582b;
+}
+
+
+.reporteMovimientos {
+  width: 100%;
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 7px 20px rgba(0,0,0,.12);
+  overflow-x: auto;
+}
+
+.reporteMovimientos h3 {
+  color: #006e32;
+  margin-bottom: 20px;
+}
+
+.tablaMovimientos {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 620px;
+}
+
+.tablaMovimientos th {
+  background: #008c39;
+  color: white;
+  padding: 14px;
+  text-align: left;
+}
+
+.tablaMovimientos td {
+  padding: 13px;
+  border-bottom: 1px solid #ddd;
+  color: #444;
+}
+
+.tablaMovimientos tr:hover {
+  background: #eef8f0;
+}
+
+.sinMovimientos {
+  text-align: center;
+  color: #666;
+  padding: 30px;
+}
+
+
+.modal {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  min-height: 100%;
+  background: rgba(0,0,0,.60);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modalContenido,
+.resultadoMovimiento,
+.modalProcesandoContenido,
+.modalSaldoContenido {
+  width: 100%;
+  max-width: 430px;
+  background: white;
+  padding: 40px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 12px 35px rgba(0,0,0,.22);
+  animation: aparecer .35s ease;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modalProcesandoContenido p {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.spinnerProcesando {
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  border: 6px solid #e6e6e6;
+  border-top: 6px solid #ff321c;
+  border-radius: 50%;
+  animation: girarSpinner 1s linear infinite;
+}
+
+@keyframes girarSpinner {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.resultadoMovimiento h2 {
+  color: #222;
+  font-size: 21px;
+  margin-bottom: 25px;
+}
+
+.circuloExitoMovimiento,
+.check {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 20px;
+  background: #14a84c;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 55px;
+  font-weight: bold;
+}
+
+.circuloExitoMovimiento {
+  background: #ff321c;
+}
+
+.modalSaldoContenido h2 {
+  color: #333;
+  font-size: 23px;
+  margin-bottom: 15px;
+}
+
+.subtextoSaldo {
+  color: #777;
+  font-size: 15px;
+  margin-bottom: 18px;
+}
+
+.saldoFinalGrande {
+  font-size: 46px;
+  font-weight: 400;
+  color: #333;
+}
+
+.iconoError {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background: #d63232;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+}
+
+.modalContenido button {
+  margin-top: 20px;
+  padding: 12px 35px;
+  border: none;
+  background: #ffd900;
+  color: #00582b;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.modalContenido h2 {
+  margin-bottom: 15px;
+}
+
+.oculto {
+  display: none !important;
+}
+
+
+@media (max-width: 750px) {
+
+  body {
+    padding: 10px;
+    align-items: flex-start;
+  }
+
+  .cajero {
+    min-height: auto;
+  }
+
+  .zonaLogin {
+    grid-template-columns: 1fr;
+  }
+
+  .pantallaLogin {
+    padding: 25px;
+  }
+
+  .encabezadoLogin h1 {
+    font-size: 38px;
+  }
+
+  main {
+    padding: 25px 18px;
+  }
+
+  .headerBanco {
+    padding: 12px 18px;
+  }
+
+  .logoPequeno {
+    width: 120px;
+  }
+
+  .datosUsuario {
+    gap: 10px;
+    font-size: 13px;
+  }
+
+  .menuOpciones {
+    gap: 12px;
+  }
+
+  .menuOpciones button {
+    min-height: 135px;
+    padding: 10px 5px;
+  }
+
+  .iconoMenu {
+    width: 75px;
+    height: 75px;
+    border-radius: 18px;
+  }
+
+  .menuOpciones span {
+    font-size: 14px;
+  }
+
+  .controlMonto {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 380px) {
+  .menuOpciones {
+    grid-template-columns: 1fr;
+  }
+
+  .panelDatos,
+  .cajaOperacion {
+    padding: 20px;
+  }
+}
